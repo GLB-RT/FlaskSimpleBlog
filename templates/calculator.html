@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %}Calculator{% endblock %}
+{% block content %}
+
+<section class="body-section">
+    <h2>Calculator</h2>
+    <div id="calculator">
+        <input type="text" id="display" readonly>
+        <div class="button-row">
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button onclick="setOperation('divide')">÷</button>
+        </div>
+        <div class="button-row">
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button onclick="setOperation('multiply')">×</button>
+        </div>
+        <div class="button-row">
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button onclick="setOperation('subtract')">−</button>
+        </div>
+        <div class="button-row">
+            <button onclick="appendNumber('0')">0</button>
+            <button class="clear-btn" onclick="clearDisplay()">C</button>
+            <button onclick="calculateResult()">=</button>
+            <button onclick="setOperation('add')">+</button>
+        </div>
+        
+    </div>
+</section>
+<script>
+let currentInput = '';
+let firstOperand = null;
+let currentOperation = null;
+let resetNext = false;
+
+function appendNumber(num) {
+    if (resetNext) {
+        currentInput = '';
+        resetNext = false;
+    }
+    currentInput += num;
+    updateDisplay();
+}
+
+function setOperation(op) {
+    if (currentInput === '' && firstOperand === null) return;
+    if (firstOperand === null) {
+        firstOperand = parseFloat(currentInput);
+    } else if (!resetNext) {
+        firstOperand = operate(firstOperand, parseFloat(currentInput), currentOperation);
+        updateDisplay(firstOperand);
+    }
+    currentOperation = op;
+    resetNext = true;
+}
+
+function calculateResult() {
+    if (currentOperation && currentInput !== '') {
+        let secondOperand = parseFloat(currentInput);
+        let result = operate(firstOperand, secondOperand, currentOperation);
+        updateDisplay(result);
+        currentInput = result.toString();
+        firstOperand = null;
+        currentOperation = null;
+        resetNext = true;
+    }
+}
+
+function clearDisplay() {
+    currentInput = '';
+    firstOperand = null;
+    currentOperation = null;
+    resetNext = false;
+    updateDisplay();
+}
+
+function updateDisplay(value) {
+    document.getElementById('display').value = value !== undefined ? value : currentInput;
+}
+
+function operate(a, b, op) {
+    switch (op) {
+        case 'add': return a + b;
+        case 'subtract': return a - b;
+        case 'multiply': return a * b;
+        case 'divide': return b !== 0 ? a / b : 'Error';
+        default: return b;
+    }
+}
+</script>
+{% endblock %}

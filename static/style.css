@@ -1,0 +1,178 @@
+:root {
+    --bg-color: #181c1b;
+    --header-bg: #1f2421;
+    --footer-bg: #232a27;
+    --text-color: #e0e5e3;
+    --accent-green: #197a50; /* bottle green */
+    --accent-hover: #25a36f;
+    --card-bg: #232a27;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: var(--header-bg);
+    color: var(--accent-green);
+    padding: 30px 0 15px 0;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-green);
+}
+
+header h1 {
+    color: var(--accent-green);
+}
+
+header nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 5px;
+    transition: background 0.2s, color 0.2s;
+}
+
+header nav a:hover, header nav a:focus {
+    background: var(--accent-green);
+    color: #fff;
+}
+
+main {
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body-section {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(25, 122, 80, 0.15);
+    text-align: center;
+    border: 1px solid var(--accent-green);
+}
+
+.body-section h2 {
+    color: var(--accent-green);
+}
+
+footer {
+    background: var(--footer-bg);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px 0;
+    border-top: 2px solid var(--accent-green);
+    width: 100%;
+}
+
+/* Calculator styles */
+#calculator {
+    max-width: 320px;
+    margin: 0 auto;
+}
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+#calculator button {
+    width: 70px;
+    height: 50px;
+    font-size: 1.2em;
+    background: var(--accent-green);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    margin: 2px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#calculator button:hover {
+    background: var(--accent-hover);
+}
+#display {
+    width: 100%;
+    font-size: 1.5em;
+    text-align: right;
+    margin-bottom: 15px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--accent-green);
+    border-radius: 6px;
+    padding: 8px;
+}
+
+#calculator button {
+    width: 70px;
+    height: 50px;
+    font-size: 1.2em;
+    background: var(--accent-green);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    margin: 2px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#calculator button:hover {
+    background: var(--accent-hover);
+}
+.clear-btn {
+    background: #b32d2e !important;
+}
+.clear-btn:hover, .clear-btn:focus {
+    background: #e04a4a !important;
+}
+
+.contact-github {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.github-link {
+    display: flex;
+    align-items: center;
+    background: #232a27;
+    border: 2px solid var(--accent-green);
+    border-radius: 10px;
+    padding: 14px 28px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 12px rgba(25, 122, 80, 0.12);
+    font-size: 1.15em;
+    font-weight: 500;
+    gap: 14px;
+}
+
+.github-link:hover, .github-link:focus {
+    background: #197a50;
+    color: #fff;
+    border-color: #25a36f;
+    box-shadow: 0 4px 20px rgba(25, 122, 80, 0.18);
+}
+
+.github-icon svg {
+    display: block;
+    color: #25a36f;
+    transition: color 0.2s;
+}
+
+.github-link:hover .github-icon svg,
+.github-link:focus .github-icon svg {
+    color: #fff;
+}
+
+.github-text strong {
+    color: #25a36f;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
