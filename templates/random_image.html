@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Calculator{% endblock %}
+{% block content %}
+<section class="body-section">
+    <h2>Random Image Generator</h2>
+    <div class="image-container">
+        <button onclick="loadNewImage()" class="image-button">
+            Generate New Image
+        </button>
+        <div id="image-link-container" class="image-link-container">
+            <a id="image-link" href="#" target="_blank"></a>
+        </div>
+        <div class="image-wrapper">
+            <img id="randomImage" src="" alt="Random image from prntscr.com">
+            <span id="imageId" class="image-id"></span>
+        </div>
+    </div>
+</section>
+<script>
+function generateRandomId() {
+    // 20 characters: uppercase, lowercase, digits, underscore
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_';
+    let result = '';
+    for (let i = 0; i < 20; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+}
+
+function loadNewImage() {
+    const id = generateRandomId();
+    const url = `https://img001.prntscr.com/file/img001/${id}.jpeg`;
+    const img = document.getElementById('randomImage');
+    const idSpan = document.getElementById('imageId');
+    const link = document.getElementById('image-link');
+    
+    img.src = url;
+    link.href = url;
+    link.textContent = url;
+    
+    img.onerror = function() {
+        this.style.display = 'none';
+        idSpan.textContent = 'Image not found. Try again!';
+    }
+    img.onload = function() {
+        this.style.display = 'block';
+        idSpan.textContent = `Image ID: ${id}`;
+    }
+}
+
+// Load initial image on page load
+window.onload = loadNewImage;
+</script>
+{% endblock %}
