@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista plików{% endblock %}
+
+{% block content %}
+<div class="body-section">
+    <h2>Lista plików</h2>
+    <ul id="file-list">
+        {% for plik in pliki %}
+            <li>
+                <a href="{{ url_for('otworz_plik', filename=plik) }}">{{ plik }}</a>
+            </li>
+        {% else %}
+            <li>Brak plików w folderze.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    function updateFileList() {
+        fetch('/get_files')
+            .then(response => response.json())
+            .then(files => {
+                const fileList = document.getElementById('file-list');
+                fileList.innerHTML = '';
+                
+                if (files.length === 0) {
+                    fileList.innerHTML = '<li>Brak plików w folderze.</li>';
+                } else {
+                    files.forEach(file => {
+                        const listItem = document.createElement('li');
+                        const link = document.createElement('a');
+                        link.href = `/pliki/${file}`;
+                        link.textContent = file;
+                        listItem.appendChild(link);
+                        fileList.appendChild(listItem);
+                    });
+                }
+            });
+    }
+
+    // Aktualizuj co 5 sekund
+    setInterval(updateFileList, 5000);
+</script>
+{% endblock %}
