@@ -7,7 +7,7 @@ A simple blog like type of website. As a backend I used Python with flask framew
 - Cool calculator
 
 ## Bonus notes
-Will host it somewhere... maybe
+Demo: https://alfaocta.com/
 
 ## Authors
 - [@GLB-RT](https://github.com/GLB-RT)
